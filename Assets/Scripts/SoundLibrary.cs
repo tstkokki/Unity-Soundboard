@@ -8,6 +8,7 @@ public class SoundLibrary : MonoBehaviour
 
     List <AudioClip> sounds;
     [SerializeField] Button buttonPrefab;
+    public string folderName = "Audio/";
     AudioSource source;
 
 
@@ -19,7 +20,7 @@ public class SoundLibrary : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         source = GetComponent<AudioSource>();
         sounds = new List<AudioClip>();
-        Object[] objects = Resources.LoadAll("Audio/");
+        Object[] objects = Resources.LoadAll(folderName);
         foreach(Object _object in objects)
         {
             if(_object is AudioClip)
@@ -36,7 +37,7 @@ public class SoundLibrary : MonoBehaviour
         foreach(AudioClip clip in sounds)
         {
             Button _button = Instantiate(buttonPrefab, transform);
-            _button.onClick.AddListener(() => source.PlayOneShot(clip));
+            _button.onClick.AddListener(() => Play(clip));
             _button.GetComponentInChildren<TextMeshProUGUI>().text = clip.name;
 
             UpdateRectSize();
@@ -48,9 +49,17 @@ public class SoundLibrary : MonoBehaviour
     public void AddClip(AudioClip clip, string clipName)
     {
         Button _button = Instantiate(buttonPrefab, transform);
-        _button.onClick.AddListener(() => source.PlayOneShot(clip));
+        _button.onClick.AddListener(() => Play(clip));
         _button.GetComponentInChildren<TextMeshProUGUI>().text = clipName;
         UpdateRectSize();
+    }
+
+    void Play(AudioClip clip)
+    {
+        if(!source.isPlaying)
+            source.clip = clip;
+
+        source.PlayOneShot(clip);
     }
 
     void UpdateRectSize()

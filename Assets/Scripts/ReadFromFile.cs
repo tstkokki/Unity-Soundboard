@@ -24,7 +24,7 @@ public class ReadFromFile : MonoBehaviour
             else
             {
                 AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
-                string _clipName = _path.Substring(_path.LastIndexOf('\\'));
+                string _clipName = _path.Substring(_path.LastIndexOf('\\')+1);
                 library.AddClip(clip, _clipName);
             }
         }

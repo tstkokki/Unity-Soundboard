@@ -5,10 +5,14 @@ using UnityEngine.Audio;
 public class ChangerMixerGroup : MonoBehaviour
 {
     [SerializeField] AudioSource source;
+    [SerializeField] AudioSource sourceAction;
+    [SerializeField] AudioSource sourceCreature;
     [SerializeField] AudioMixerGroup group;
 
     public void SwitchGroup()
     {
         source.outputAudioMixerGroup = group;
+        sourceAction.outputAudioMixerGroup = group;
+        sourceCreature.outputAudioMixerGroup = group;
     }
 }
