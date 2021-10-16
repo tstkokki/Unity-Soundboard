@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Soundboard.unity
     guid: 8fc3527db741989479ec5157cea3100f
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: d7cf1a549d8c4014d93e14eb0098a479, type: 2}

@@ -7,6 +7,7 @@ public class ChangerMixerGroup : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] AudioSource sourceAction;
     [SerializeField] AudioSource sourceCreature;
+    [SerializeField] AudioSource loopSource;
     [SerializeField] AudioMixerGroup group;
 
     public void SwitchGroup()
@@ -14,5 +15,6 @@ public class ChangerMixerGroup : MonoBehaviour
         source.outputAudioMixerGroup = group;
         sourceAction.outputAudioMixerGroup = group;
         sourceCreature.outputAudioMixerGroup = group;
+        loopSource.outputAudioMixerGroup = group;
     }
 }
