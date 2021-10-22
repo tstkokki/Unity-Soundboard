@@ -18,7 +18,6 @@ public class ColorChanger : MonoBehaviour
             .Subscribe(x => 
             {
                 currentIndex = (currentIndex < colors.Length-1) ? currentIndex+1 : 0;
-                Debug.Log(currentIndex);
             });
     }
 
