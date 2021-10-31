@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.InputSystem;
+using System.IO;
+using UnityEngine.Networking;
 public class SoundLibrary : MonoBehaviour
 {
 
@@ -37,7 +38,11 @@ public class SoundLibrary : MonoBehaviour
                 sounds.Add(clip);
             }
         }
+
+
         StartCoroutine(CreateButtons());
+
+
     }
 
     int count = 0;
@@ -49,7 +54,16 @@ public class SoundLibrary : MonoBehaviour
             UpdateRectSize();
             yield return new WaitForEndOfFrame();
         }
+        var fileinfo = new DirectoryInfo(Application.persistentDataPath + "/Sounds/" + folderName).GetFiles();
+        foreach (FileInfo f in fileinfo)
+        {
+            if (f.Extension == ".mp3" || f.Extension == ".ogg" || f.Extension == ".wav")
+            {
+                CreateAudioClipFromFile(f.FullName);
 
+                yield return new WaitForEndOfFrame();
+            }
+        }
     }
 
     public void AddClip(AudioClip clip, string clipName)
@@ -96,5 +110,50 @@ public class SoundLibrary : MonoBehaviour
     {
 
         rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, transform.childCount / 7 * 110);
+    }
+
+
+    public void CreateAudioClipFromFile(string _path)
+    {
+        if (_path.Length > 5)
+        {
+
+
+            _path = _path.Replace("\"", "");
+            string fileType = _path.Substring(_path.Length - 4);
+            fileType = fileType.ToLower();
+            switch (fileType)
+            {
+                case ".wav":
+                    StartCoroutine(GetAudioClip(_path, AudioType.WAV));
+                    break;
+                case ".mp3":
+                    StartCoroutine(GetAudioClip(_path));
+                    break;
+                case ".ogg":
+                    StartCoroutine(GetAudioClip(_path, AudioType.OGGVORBIS));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    IEnumerator GetAudioClip(string _path, AudioType _audioType = AudioType.MPEG)
+    {
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(_path, _audioType))
+        {
+            yield return www.SendWebRequest();
+            if (www.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.Log("error");
+            }
+            else
+            {
+                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+                string _clipName = _path.Substring(_path.LastIndexOf('\\') + 1);
+                AddClip(clip, _clipName);
+            }
+        }
     }
 }
