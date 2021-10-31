@@ -14,6 +14,9 @@ public class SoundLibrary : MonoBehaviour
     [SerializeField] AudioSource loopSource;
     RectTransform rectTransform;
 
+    [SerializeField] ParticleSystem top;
+    [SerializeField] ParticleSystem bottom;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,12 +68,28 @@ public class SoundLibrary : MonoBehaviour
             loopSource.clip = clip;
 
         source.PlayOneShot(clip);
+        Emit(clip.length);
+    }
+    bool topOrBottom = false;
+    void Emit(float length = 0.3f)
+    {
+        var main = (topOrBottom) ? top.main : bottom.main;
+        main.startLifetime = length;
+        if (topOrBottom)
+            top.Play();
+        else
+            bottom.Play();
+        topOrBottom = !topOrBottom;
     }
 
 
     public void PlayInput(int _input)
     {
-        if (_input < sounds.Count) source.PlayOneShot(sounds[_input]);
+        if (_input < sounds.Count)
+        {
+            source.PlayOneShot(sounds[_input]);
+            Emit();
+        }
     }
 
     void UpdateRectSize()

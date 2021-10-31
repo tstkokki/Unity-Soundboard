@@ -97,6 +97,14 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Help"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ad7c97c-70e8-484d-a213-13f02163fac4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -106,7 +114,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -117,7 +125,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -128,7 +136,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -139,7 +147,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -150,7 +158,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/5"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -161,7 +169,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/6"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""6"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -172,7 +180,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/7"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""7"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -183,7 +191,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/8"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""8"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -194,7 +202,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/9"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""9"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -205,15 +213,49 @@ public class @MyInputs : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/0"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""0"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""582817e3-740a-4df6-9147-9be9596bab82"",
+                    ""path"": ""<Keyboard>/numpadPlus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Help"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""398db680-ac93-49d8-99ad-bc66081fe574"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Help"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Soundboard
         m_Soundboard = asset.FindActionMap("Soundboard", throwIfNotFound: true);
@@ -227,6 +269,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
         m_Soundboard__8 = m_Soundboard.FindAction("8", throwIfNotFound: true);
         m_Soundboard__9 = m_Soundboard.FindAction("9", throwIfNotFound: true);
         m_Soundboard__0 = m_Soundboard.FindAction("0", throwIfNotFound: true);
+        m_Soundboard_Help = m_Soundboard.FindAction("Help", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -286,6 +329,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_Soundboard__8;
     private readonly InputAction m_Soundboard__9;
     private readonly InputAction m_Soundboard__0;
+    private readonly InputAction m_Soundboard_Help;
     public struct SoundboardActions
     {
         private @MyInputs m_Wrapper;
@@ -300,6 +344,7 @@ public class @MyInputs : IInputActionCollection, IDisposable
         public InputAction @_8 => m_Wrapper.m_Soundboard__8;
         public InputAction @_9 => m_Wrapper.m_Soundboard__9;
         public InputAction @_0 => m_Wrapper.m_Soundboard__0;
+        public InputAction @Help => m_Wrapper.m_Soundboard_Help;
         public InputActionMap Get() { return m_Wrapper.m_Soundboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -339,6 +384,9 @@ public class @MyInputs : IInputActionCollection, IDisposable
                 @_0.started -= m_Wrapper.m_SoundboardActionsCallbackInterface.On_0;
                 @_0.performed -= m_Wrapper.m_SoundboardActionsCallbackInterface.On_0;
                 @_0.canceled -= m_Wrapper.m_SoundboardActionsCallbackInterface.On_0;
+                @Help.started -= m_Wrapper.m_SoundboardActionsCallbackInterface.OnHelp;
+                @Help.performed -= m_Wrapper.m_SoundboardActionsCallbackInterface.OnHelp;
+                @Help.canceled -= m_Wrapper.m_SoundboardActionsCallbackInterface.OnHelp;
             }
             m_Wrapper.m_SoundboardActionsCallbackInterface = instance;
             if (instance != null)
@@ -373,10 +421,22 @@ public class @MyInputs : IInputActionCollection, IDisposable
                 @_0.started += instance.On_0;
                 @_0.performed += instance.On_0;
                 @_0.canceled += instance.On_0;
+                @Help.started += instance.OnHelp;
+                @Help.performed += instance.OnHelp;
+                @Help.canceled += instance.OnHelp;
             }
         }
     }
     public SoundboardActions @Soundboard => new SoundboardActions(this);
+    private int m_KeyboardSchemeIndex = -1;
+    public InputControlScheme KeyboardScheme
+    {
+        get
+        {
+            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+            return asset.controlSchemes[m_KeyboardSchemeIndex];
+        }
+    }
     public interface ISoundboardActions
     {
         void On_1(InputAction.CallbackContext context);
@@ -389,5 +449,6 @@ public class @MyInputs : IInputActionCollection, IDisposable
         void On_8(InputAction.CallbackContext context);
         void On_9(InputAction.CallbackContext context);
         void On_0(InputAction.CallbackContext context);
+        void OnHelp(InputAction.CallbackContext context);
     }
 }
